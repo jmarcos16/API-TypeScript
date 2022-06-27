@@ -11,12 +11,18 @@ export const UserModel = db.define("users", {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Esse campo não pode ser vazio",
+      },
+    },
   },
   nome: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  idade: {
-    type: DataTypes.INTEGER,
+  password: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 });

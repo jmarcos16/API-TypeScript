@@ -4,9 +4,9 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "email": "jose.marcos@elo.dev",
-  "nome": "José Marcos",
-  "idade": 20
+  "email": "jose.tesste@teste.com",
+  "nome": "Jose",
+  "password": "Malukeye"
 }
 
 ### Find All
