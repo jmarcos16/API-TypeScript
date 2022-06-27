@@ -75,6 +75,30 @@ class UserController {
     await UserModel.destroy({ where: { id: userID } });
     return res.status(204).send();
   }
+
+  async authUser(req: Request, res: Response) {
+    const { email, password } = req.body;
+
+    // Validation
+    if (!email) {
+      return res.status(422).json({ msg: "Email é Obrigatório!" });
+    }
+    if (!password) {
+      return res.status(422).json({ msg: "Senha é Obrigatória!" });
+    }
+
+    const checkUser = await UserModel.findOne({
+      // eslint-disable-next-line object-shorthand
+      where: { email: email },
+    });
+
+    if (!checkUser) {
+      return res.status(404).json({ msg: "Usuário não encontrado!" });
+    }
+
+    // Check if password if match
+    return res.status(200).json(checkUser._model);
+  }
 }
 
 export default new UserController();

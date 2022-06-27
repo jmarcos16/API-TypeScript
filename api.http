@@ -28,3 +28,14 @@ Content-Type: application/json
 
 ###DELETE 
 DELETE http://localhost:3000/users/1
+
+
+###AUTH USER
+
+POST http://localhost:3000/users/auth
+Content-Type: application/json
+
+{
+  "email": "jose.tesste@teste.com",
+  "password": "$2b$08$6HuCmnHyN8qNpbN8omczH.HGFeGA0bN2H7HfmZN0bjH5nGXHO/R6a"
+}
