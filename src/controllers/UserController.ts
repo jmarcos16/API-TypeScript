@@ -87,17 +87,21 @@ class UserController {
       return res.status(422).json({ msg: "Senha é Obrigatória!" });
     }
 
-    const checkUser = await UserModel.findOne({
-      // eslint-disable-next-line object-shorthand
-      where: { email: email },
-    });
+    const checkUser = await UserModel.findOne({ where: { email } });
 
     if (!checkUser) {
       return res.status(404).json({ msg: "Usuário não encontrado!" });
     }
-
+    /*
     // Check if password if match
-    return res.status(200).json(checkUser._model);
+    */
+    // eslint-disable-next-line dot-notation
+    const checkPassword = await bcrypt.compare(password, checkUser["password"]);
+
+    if (!checkPassword) {
+      return res.status(422).json({ msg: "Senha Invalida! " });
+    }
+    return res.status(200).json(checkUser);
   }
 }
 
